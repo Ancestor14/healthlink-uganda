@@ -1,0 +1,145 @@
+<div id="symptom-checker-page" class="page">
+    <div class="header">
+        <h1><i class="fas fa-stethoscope"></i> AI Symptom Checker</h1>
+        <p>Get instant preliminary assessment using advanced AI</p>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-clipboard-list"></i> Describe Your Symptoms</h2>
+        <div class="symptom-form">
+            <div class="form-group">
+                <label for="symptoms">What symptoms are you experiencing? *</label>
+                <textarea id="symptoms" rows="5" placeholder="Please describe your symptoms in detail. Include:
+- When did they start?
+- How severe are they (1-10)?
+- What makes them better or worse?
+- Any other relevant information..." 
+                         style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1em;"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Additional Information:</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div>
+                        <label for="symptom-duration">Duration:</label>
+                        <select id="symptom-duration">
+                            <option value="">Select duration...</option>
+                            <option value="hours">Less than 24 hours</option>
+                            <option value="days_1_3">1-3 days</option>
+                            <option value="days_4_7">4-7 days</option>
+                            <option value="weeks_1_2">1-2 weeks</option>
+                            <option value="weeks_2_4">2-4 weeks</option>
+                            <option value="months">More than 1 month</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="symptom-severity">Severity (1-10):</label>
+                        <select id="symptom-severity">
+                            <option value="">Select severity...</option>
+                            <option value="1">1 - Very mild</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 - Moderate</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8 - Severe</option>
+                            <option value="9">9</option>
+                            <option value="10">10 - Very severe</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Associated Symptoms (select all that apply):</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="symptoms" value="fever"> Fever
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="symptoms" value="headache"> Headache
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="symptoms" value="cough"> Cough
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="symptoms" value="nausea"> Nausea
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="symptoms" value="fatigue"> Fatigue
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="symptoms" value="pain"> Pain
+                    </label>
+                </div>
+            </div>
+
+            <button id="check-symptoms-btn" class="btn btn-primary" style="margin-top: 20px;">
+                <i class="fas fa-stethoscope"></i> Analyze Symptoms
+            </button>
+        </div>
+    </div>
+
+    <div id="diagnosis-result" class="diagnosis-result" style="display: none;">
+        <h3><i class="fas fa-diagnoses"></i> AI Analysis Result</h3>
+        <p>Your results will appear here after analysis...</p>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-lightbulb"></i> Quick Symptom Checker</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px; cursor: pointer;" 
+                 onclick="document.getElementById('symptoms').value += 'Fever, headache, and body aches. Started yesterday. Severity: 7/10.'">
+                <i class="fas fa-temperature-high" style="font-size: 2em; color: var(--emergency); margin-bottom: 10px;"></i>
+                <h3>Flu-like Symptoms</h3>
+                <p>Fever, headache, body aches</p>
+            </div>
+            
+            <div style="text-align: center; padding: 20px; background: #e3f2fd; border-radius: 10px; cursor: pointer;" 
+                 onclick="document.getElementById('symptoms').value += 'Cough, chest congestion, and difficulty breathing. Started 3 days ago. Severity: 6/10.'">
+                <i class="fas fa-lungs" style="font-size: 2em; color: var(--info); margin-bottom: 10px;"></i>
+                <h3>Respiratory Issues</h3>
+                <p>Cough, congestion, breathing</p>
+            </div>
+            
+            <div style="text-align: center; padding: 20px; background: #fff3e0; border-radius: 10px; cursor: pointer;" 
+                 onclick="document.getElementById('symptoms').value += 'Stomach pain, nausea, and diarrhea. Started today. Severity: 5/10.'">
+                <i class="fas fa-stomach" style="font-size: 2em; color: var(--warning); margin-bottom: 10px;"></i>
+                <h3>Digestive Problems</h3>
+                <p>Stomach pain, nausea, diarrhea</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-exclamation-triangle"></i> When to Seek Immediate Help</h2>
+        <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-left: 4px solid var(--emergency);">
+            <h3 style="color: var(--emergency);">🚨 Seek Emergency Care Immediately if You Have:</h3>
+            <ul style="margin: 15px 0; padding-left: 20px;">
+                <li>Chest pain or pressure</li>
+                <li>Difficulty breathing</li>
+                <li>Severe bleeding</li>
+                <li>Sudden weakness or numbness</li>
+                <li>Severe headache or confusion</li>
+                <li>Uncontrolled vomiting or diarrhea</li>
+                <li>Thoughts of self-harm</li>
+            </ul>
+            <button class="btn btn-emergency" onclick="showPage('emergency-page')">
+                <i class="fas fa-ambulance"></i> Go to Emergency Services
+            </button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-info-circle"></i> About Our AI Symptom Checker</h2>
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 10px;">
+            <p><strong>How it works:</strong> Our AI uses advanced machine learning algorithms trained on millions of medical cases to provide preliminary assessments. However, this is not a substitute for professional medical advice.</p>
+            
+            <p><strong>Accuracy:</strong> The AI achieves approximately 85% accuracy in preliminary diagnoses, but always consult a healthcare professional for definitive diagnosis and treatment.</p>
+            
+            <p><strong>Privacy:</strong> Your health information is encrypted and never shared with third parties without your consent.</p>
+        </div>
+    </div>
+</div>

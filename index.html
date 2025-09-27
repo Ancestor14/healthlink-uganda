@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Link Uganda - Integrated Digital Healthcare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.18.2.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap" async defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1><i class="fas fa-heartbeat"></i> Health Link UG</h1>
+                <p>Integrated Healthcare Solution</p>
+            </div>
+            
+            <div class="nav-item active" onclick="showPage('home-page')">
+                <i class="fas fa-home"></i> Dashboard
+            </div>
+            <div class="nav-item" onclick="showPage('telemedicine-page')">
+                <i class="fas fa-video"></i> Telemedicine
+            </div>
+            <div class="nav-item" onclick="showPage('reminders-page')">
+                <i class="fas fa-clock"></i> Medication Reminders
+            </div>
+            <div class="nav-item" onclick="showPage('emergency-page')">
+                <i class="fas fa-ambulance"></i> Emergency Services
+            </div>
+            <div class="nav-item" onclick="showPage('symptom-checker-page')">
+                <i class="fas fa-stethoscope"></i> Symptom Checker
+            </div>
+            <div class="nav-item" onclick="showPage('about-page')">
+                <i class="fas fa-info-circle"></i> About & Developer
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Home Page -->
+            <div id="home-page" class="page active">
+                <div class="header">
+                    <div class="welcome-message">
+                        <h2>Welcome to Health Link Uganda!</h2>
+                        <div class="date-display" id="currentDateTime">Loading date and time...</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn btn-primary" onclick="showPage('emergency-page')">
+                            <i class="fas fa-ambulance"></i> Emergency
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('telemedicine-page')">
+                            <i class="fas fa-video"></i> Start Consultation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-heart"></i>
+                        <div class="stat-number">72</div>
+                        <div class="stat-label">Heart Rate (bpm)</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-walking"></i>
+                        <div class="stat-number">8,542</div>
+                        <div class="stat-label">Steps Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tint"></i>
+                        <div class="stat-number">5/8</div>
+                        <div class="stat-label">Water Glasses</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-pills"></i>
+                        <div class="stat-number">2/3</div>
+                        <div class="stat-label">Medications Taken</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-rocket"></i> Quick Access</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        <button class="btn btn-primary" onclick="showPage('telemedicine-page')">
+                            <i class="fas fa-video"></i> Video Consultation
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('reminders-page')">
+                            <i class="fas fa-bell"></i> Set Reminder
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('symptom-checker-page')">
+                            <i class="fas fa-stethoscope"></i> Check Symptoms
+                        </button>
+                        <button class="btn btn-emergency" onclick="showPage('emergency-page')">
+                            <i class="fas fa-ambulance"></i> Emergency Help
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                    <div class="activity-item">
+                        <i class="fas fa-pills"></i> Took Malaria medication at 8:00 AM
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-file-medical"></i> Lab results available from last checkup
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-user-md"></i> Dr. Okoth sent a message about your treatment
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other pages will be added here -->
+            {% include 'telemedicine.html' %}
+            {% include 'reminders.html' %}
+            {% include 'emergency.html' %}
+            {% include 'symptom_checker.html' %}
+            {% include 'about.html' %}
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

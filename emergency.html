@@ -1,0 +1,146 @@
+<div id="emergency-page" class="page">
+    <div class="header">
+        <h1><i class="fas fa-ambulance"></i> Emergency Services</h1>
+        <p>Immediate assistance when you need it most</p>
+    </div>
+
+    <div class="card" style="background: linear-gradient(135deg, #ffebee, #ffcdd2); border: 2px solid var(--emergency);">
+        <h2 style="color: var(--emergency);"><i class="fas fa-exclamation-triangle"></i> Emergency Actions</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+            <button class="btn btn-emergency" onclick="callEmergency()">
+                <i class="fas fa-phone"></i> Call Emergency (112)
+            </button>
+            
+            <button class="btn btn-emergency" onclick="callAmbulance()">
+                <i class="fas fa-ambulance"></i> Request Ambulance
+            </button>
+            
+            <button class="btn btn-emergency" onclick="contactDoctor()">
+                <i class="fas fa-user-md"></i> Contact Doctor
+            </button>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; margin-top: 15px;">
+            <p style="margin: 0; color: var(--emergency); font-weight: bold;">
+                <i class="fas fa-info-circle"></i> Your location will be shared with emergency services
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-map-marker-alt"></i> Nearby Medical Facilities</h2>
+        
+        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <div class="form-group">
+                    <label for="hospital-search">Search for hospitals:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="hospital-search" placeholder="Enter hospital name or area..." 
+                              style="flex: 1;">
+                        <button class="btn btn-primary" id="hospital-search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map-container"></div>
+
+        <div class="emergency-contacts">
+            <div class="contact-card">
+                <h3>Mulago National Referral Hospital</h3>
+                <p>⭐ 4.5 | 2.3 km away</p>
+                <p>📞 +256 414 554 000</p>
+                <button class="btn btn-primary" onclick="getDirections('Mulago National Referral Hospital')">
+                    <i class="fas fa-directions"></i> Get Directions
+                </button>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Kampala Medical Chambers</h3>
+                <p>⭐ 4.7 | 1.1 km away</p>
+                <p>📞 +256 414 234 567</p>
+                <button class="btn btn-primary" onclick="getDirections('Kampala Medical Chambers')">
+                    <i class="fas fa-directions"></i> Get Directions
+                </button>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Kiswa Health Center III</h3>
+                <p>⭐ 4.2 | 0.8 km away</p>
+                <p>📞 +256 414 345 678</p>
+                <button class="btn btn-primary" onclick="getDirections('Kiswa Health Center III')">
+                    <i class="fas fa-directions"></i> Get Directions
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-first-aid"></i> First Aid Tips</h2>
+        <div class="first-aid-tips">
+            <div class="tip-card">
+                <h3><i class="fas fa-band-aid"></i> Bleeding Control</h3>
+                <p>Apply direct pressure with a clean cloth. Elevate the wound above heart level if possible. 
+                   Continue pressure for at least 10 minutes.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h3><i class="fas fa-fire"></i> Burns</h3>
+                <p>Cool the burn with running cool water for 10-15 minutes. Do not use ice. 
+                   Cover with a clean, dry cloth. Do not apply butter or ointments.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h3><i class="fas fa-lungs"></i> CPR Instructions</h3>
+                <p>Push hard and fast in the center of the chest at 100-120 compressions per minute. 
+                   Use an AED if available. Continue until help arrives.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h3><i class="fas fa-allergies"></i> Allergic Reactions</h3>
+                <p>Use an epinephrine auto-injector if available. Administer antihistamines. 
+                   Keep the person calm and monitor breathing.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h3><i class="fas fa-bone"></i> Fractures</h3>
+                <p>Immobilize the injured area. Apply ice to reduce swelling. 
+                   Do not try to realign bones. Seek immediate medical attention.</p>
+            </div>
+            
+            <div class="tip-card">
+                <h3><i class="fas fa-head-side-virus"></i> Concussion</h3>
+                <p>Keep the person awake and alert. Monitor for confusion or dizziness. 
+                   Apply ice to swollen areas. Seek medical evaluation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-phone-alt"></i> Emergency Contacts</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div style="text-align: center; padding: 20px; background: #ffebee; border-radius: 10px;">
+                <i class="fas fa-ambulance" style="font-size: 2em; color: var(--emergency); margin-bottom: 10px;"></i>
+                <h3>National Emergency</h3>
+                <p style="font-size: 1.5em; font-weight: bold; color: var(--emergency);">112</p>
+                <p>Police, Fire, Ambulance</p>
+            </div>
+            
+            <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px;">
+                <i class="fas fa-hospital" style="font-size: 2em; color: var(--success); margin-bottom: 10px;"></i>
+                <h3>Medical Emergency</h3>
+                <p style="font-size: 1.5em; font-weight: bold; color: var(--success);">911</p>
+                <p>Medical emergencies only</p>
+            </div>
+            
+            <div style="text-align: center; padding: 20px; background: #e3f2fd; border-radius: 10px;">
+                <i class="fas fa-poison" style="font-size: 2em; color: var(--info); margin-bottom: 10px;"></i>
+                <h3>Poison Control</h3>
+                <p style="font-size: 1.5em; font-weight: bold; color: var(--info);">0800 100 999</p>
+                <p>24/7 poison emergencies</p>
+            </div>
+        </div>
+    </div>
+</div>
